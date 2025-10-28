@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 public class HitDto {
+    private Long id;
+
     @NotBlank(message = "Идентификатор сервиса не может быть пустым")
     @Size(max = 255)
     private String app;

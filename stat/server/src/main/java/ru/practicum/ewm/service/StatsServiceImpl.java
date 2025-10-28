@@ -39,7 +39,7 @@ public class StatsServiceImpl implements StatsService {
                 .map(result -> new StatsDto(
                         (String) result[0],        // app
                         (String) result[1],        // uri
-                        ((Number) result[2]).intValue()  // hits
+                        ((Number) result[2]).longValue()  // hits
                 ))
                 .collect(Collectors.toList());
     }
