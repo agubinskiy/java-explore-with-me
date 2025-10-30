@@ -26,7 +26,6 @@ import ru.practicum.dto.request.EventRequestStatusUpdateRequest;
 import ru.practicum.dto.request.EventRequestStatusUpdateResult;
 import ru.practicum.dto.request.ParticipationRequestDto;
 import ru.practicum.ewm.StatsClient;
-import ru.practicum.ewm.dto.HitDto;
 import ru.practicum.ewm.dto.StatsDto;
 import ru.practicum.exception.ConflictException;
 import ru.practicum.exception.NotFoundException;

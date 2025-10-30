@@ -6,10 +6,6 @@ import ru.practicum.dto.event.EventShortDto;
 import ru.practicum.dto.event.NewEventDto;
 import ru.practicum.model.Event;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @UtilityClass
 public class EventMapper {
     public Event mapFromNewRequest(NewEventDto dto) {
