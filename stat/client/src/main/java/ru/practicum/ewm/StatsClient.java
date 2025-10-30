@@ -56,4 +56,8 @@ public class StatsClient extends BaseClient {
 
         return get(pathBuilder.toString(), parameters);
     }
+
+    public void postStats(HitDto hitDto) {
+        post(hitDto);
+    }
 }

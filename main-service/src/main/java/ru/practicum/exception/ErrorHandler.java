@@ -1,4 +1,4 @@
-package ru.practicum.ewm.exceptions;
+package ru.practicum.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,10 +12,39 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Slf4j
 public class ErrorHandler {
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleNotFound(NotFoundException e) {
+        log.warn("Ошибка, объект не найден. {}", e.getMessage());
+        return new ErrorResponse(
+                "Ошибка, объект не найден",
+                e.getMessage()
+        );
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleForbidden(ForbiddenException e) {
+        log.warn("Ошибка, недостаточно прав. {}", e.getMessage());
+        return new ErrorResponse(
+                "Ошибка, недостаточно прав",
+                e.getMessage()
+        );
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleDuplicate(final ConflictException e) {
+        log.warn("Ошибка, дубликат. {}", e.getMessage());
+        return new ErrorResponse(
+                "Ошибка, дубликат",
+                e.getMessage()
+        );
+    }
 
     @ExceptionHandler({MethodArgumentNotValidException.class,
-            HttpMessageNotReadableException.class, MissingServletRequestParameterException.class,
-            ValidationException.class})
+            HttpMessageNotReadableException.class, ValidationException.class,
+            MissingServletRequestParameterException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidation(final Exception e) {
         log.debug("Ошибка валидации. {}", e.getMessage());
