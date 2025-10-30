@@ -7,12 +7,6 @@ import ru.practicum.model.Category;
 
 @UtilityClass
 public class CategoryMapper {
-    public Category mapFromDto(CategoryDto dto) {
-        return new Category(
-                dto.getId(),
-                dto.getName()
-        );
-    }
 
     public CategoryDto mapToDto(Category category) {
         return new CategoryDto(

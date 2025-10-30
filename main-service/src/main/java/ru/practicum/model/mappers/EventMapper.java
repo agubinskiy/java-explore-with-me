@@ -65,9 +65,4 @@ public class EventMapper {
                 null
         );
     }
-
-    public List<EventShortDto> mapToShortDtoList(List<Event> events) {
-        return events == null ? new ArrayList<>() :
-                events.stream().map(EventMapper::mapToShortDto).collect(Collectors.toList());
-    }
 }

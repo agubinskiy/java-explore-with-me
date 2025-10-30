@@ -142,15 +142,14 @@ public class EventServiceImpl implements EventService {
         UserEventStateAction stateAction = request.getStateAction();
         if (stateAction != null) {
             switch (stateAction) {
-                case SEND_TO_REVIEW:
+                case SEND_TO_REVIEW -> {
                     eventForUpdate.setState(EventState.PENDING);
-                    hasChanges = true;
-                    break;
-                case CANCEL_REVIEW:
+                }
+                case CANCEL_REVIEW -> {
                     eventForUpdate.setState(EventState.CANCELED);
-                    hasChanges = true;
-                    break;
+                }
             }
+            hasChanges = true;
         }
         Event eventAfterUpdate = null;
         if (hasChanges) {
@@ -491,15 +490,7 @@ public class EventServiceImpl implements EventService {
     }
 
     private void addStatsClient(HttpServletRequest request) {
-        statsClient.postStats(
-                new HitDto(
-                        null,
-                        applicationName,
-                        request.getRequestURI(),
-                        request.getRemoteAddr(),
-                        LocalDateTime.now()
-                )
-        );
+        statsClient.saveHit(applicationName, request.getRequestURI(), request.getRemoteAddr());
     }
 
     private Map<Long, List<Request>> getConfirmedRequestsCount(List<Event> events) {

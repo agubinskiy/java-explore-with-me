@@ -6,15 +6,6 @@ import ru.practicum.model.Request;
 
 @UtilityClass
 public class RequestMapper {
-    public Request mapFromDto(ParticipationRequestDto dto) {
-        return new Request(
-                dto.getId(),
-                dto.getCreated(),
-                null,
-                null,
-                dto.getStatus()
-        );
-    }
 
     public ParticipationRequestDto mapToDto(Request request) {
         return new ParticipationRequestDto(
